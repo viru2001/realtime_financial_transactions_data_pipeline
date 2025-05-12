@@ -1,0 +1,4 @@
+apache-beam[gcp]
+pyffx
+google-cloud-kms
+google-cloud-storage
