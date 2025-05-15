@@ -34,15 +34,15 @@ status_weights = list(status_distribution.values())
 
 # Account types per customer segment
 SEGMENT_ACCOUNT_TYPES = {
-    'Retail Banking': ['Basic Savings Account', 'Basic Credit Card'],
-    'Mass Affluent': ['High-Yield Savings Account', 'Premium Credit Card'],
-    'High Net Worth Individuals (HNWIs)': ['Private Banking Account', 'Customized Credit Line'],
+    'Retail Banking': ['Basic Savings Account', 'Basic Credit Card','Basic Debit Card'],
+    'Mass Affluent': ['High-Yield Savings Account', 'Premium Credit Card','Premium Debit Card'],
+    'High Net Worth Individuals (HNWIs)': ['Private Banking Account', 'Business Credit Card'],
     'SMEs': ['Business Current Account', 'Merchant Services Account'],
     'Corporate Clients': ['Corporate Current Account', 'Treasury Services Account'],
     'NRIs': ['NRE Account', 'NRO Account', 'FCNR Account'],
-    'Agriculture and Rural Banking': ['Basic Savings Account Rural', 'Kisan Credit Card'],
-    'Government and Institutional Banking': ['Government Current Account'],
-    'Young Professionals': ['Salary Account', 'Entry-Level Credit Card'],
+    'Agriculture and Rural Banking': ['Basic Savings Account Rural', 'Kisan Credit Card','Kisan Debit Card'],
+    'Government and Institutional Banking': ['Government Current Account','Corporate Current Account'],
+    'Young Professionals': ['Salary Account', 'Entry-Level Debit Card'],
     'Retirees': ['Senior Citizen Savings Scheme Account', 'Pension Account']
 }
 

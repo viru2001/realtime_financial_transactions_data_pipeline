@@ -1,0 +1,86 @@
+{
+  "type": "record",
+  "name": "fact_transactions",
+  "fields": [
+    {
+      "name": "transaction_id",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": "long"
+    },
+    {
+      "name": "account_id",
+      "type": "long"
+    },
+    {
+      "name": "merchant_id",
+      "type": "int"
+    },
+    {
+      "name": "merchant_category_code_id",
+      "type": "int"
+    },
+    {
+      "name": "is_recurring",
+      "type": "boolean"
+    },
+    {
+      "name": "transaction_datetime",
+      "type": "string"
+    },
+    {
+      "name": "amount",
+      "type": "double"
+    },
+    {
+      "name": "tax_amount",
+      "type": "double"
+    },
+    {
+      "name": "discount_amount",
+      "type": "double"
+    },
+    {
+      "name": "total_amount",
+      "type": "double"
+    },
+    {
+      "name": "transaction_channel",
+      "type": "string"
+    },
+    {
+      "name": "card_number",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "card_bin",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "card_provider",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "payment_gateway_id",
+      "type": ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "device_type_id",
+      "type": "int"
+    },
+    {
+      "name": "ip_address",
+      "type": "string"
+    },
+    {
+      "name": "risk_score",
+      "type": "double"
+    }
+  ]
+}

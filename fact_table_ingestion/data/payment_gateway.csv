@@ -1,0 +1,11 @@
+payment_gateway_id,payment_gateway_name
+1,Razorpay
+2,Stripe
+3,CCAvenue
+4,Paytm
+5,BillDesk
+6,HDFC Bank
+7,ICICI Bank
+8,Atom
+9,MobiKwik Payment Gateway
+10,Phone Pay

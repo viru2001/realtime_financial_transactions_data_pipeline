@@ -1,0 +1,39 @@
+merchant_id,name,merchant_category_id,mcc_description,is_recurring
+1,"Amazon India",1,"Online Retail",false
+2,"Flipkart",1,"Online Retail",false
+3,"Big Bazaar",2,"Grocery Stores",false
+4,"Reliance Digital",3,"Electronics Stores",false
+5,"Swiggy",4,"Food Delivery",false
+6,"Zomato",4,"Food Delivery",false
+7,"IRCTC",5,"Railways",false
+8,"MakeMyTrip",6,"Travel Agencies",false
+9,"Paytm",7,"Payment Processing Services",false
+10,"Netflix India",8,"Streaming Services",true
+11,"D-Mart",2,"Grocery Stores",false
+12,"Croma",3,"Electronics Stores",false
+13,"Dominos Pizza",9,"Fast Food Restaurants",false
+14,"KFC",9,"Fast Food Restaurants",false
+15,"Ola Cabs",10,"Ride-Hailing Services",false
+16,"Uber",10,"Ride-Hailing Services",false
+17,"BookMyShow",11,"Ticket Sales - Entertainment",false
+18,"PVR Cinemas",12,"Movie Theaters",false
+19,"Shoppers Stop",13,"Department Stores",false
+20,"Lifestyle",13,"Department Stores",false
+21,"Myntra",1,"Online Retail",false
+22,"Ajio",1,"Online Retail",false
+23,"Starbucks",14,"Coffee Shops",false
+24,"Cafe Coffee Day",14,"Coffee Shops",false
+25,"Apollo Pharmacy",15,"Pharmacies",false
+26,"MedPlus",15,"Pharmacies",false
+27,"Indigo Airlines",16,"Airlines",false
+28,"SpiceJet",16,"Airlines",false
+29,"OYO Rooms",17,"Hotels and Accommodation",false
+30,"FabHotels",17,"Hotels and Accommodation",false
+31,"Google Pay",7,"Payment Processing Services",false
+32,"PhonePe",7,"Payment Processing Services",false
+33,"Amazon Prime Video",8,"Streaming Services",true
+34,"Disney+ Hotstar",8,"Streaming Services",true
+35,"Spotify",18,"Music Streaming Services",true
+36,"Apple Music",18,"Music Streaming Services",true
+37,"Zee5",8,"Streaming Services",true
+38,"Times Prime",19,"Subscription Services - Membership",true

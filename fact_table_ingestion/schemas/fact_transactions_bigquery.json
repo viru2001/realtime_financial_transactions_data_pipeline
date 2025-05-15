@@ -1,0 +1,97 @@
+[
+    {
+        "name": "transaction_id",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "customer_id",
+        "type": "INT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "account_id",
+        "type": "INT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "merchant_id",
+        "type": "INT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "merchant_category_code_id",
+        "type": "INT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "is_recurring",
+        "type": "BOOLEAN",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "transaction_datetime",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "amount",
+        "type": "FLOAT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "tax_amount",
+        "type": "FLOAT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "discount_amount",
+        "type": "FLOAT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "total_amount",
+        "type": "FLOAT64",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "transaction_channel",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "card_number",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "card_bin",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "card_provider",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "payment_gateway_id",
+        "type": "INT64",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "device_type_id",
+        "type": "INT64",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "ip_address",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "risk_score",
+        "type": "FLOAT64",
+        "mode": "REQUIRED"
+    }
+]
