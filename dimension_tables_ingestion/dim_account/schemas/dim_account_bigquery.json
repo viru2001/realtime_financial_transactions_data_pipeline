@@ -1,0 +1,38 @@
+[
+    {
+        "name": "account_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED",
+        "description": "Unique identifier for the account"
+    },
+    {
+        "name": "customer_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED",
+        "description": "Identifier for the customer who owns the account"
+    },
+    {
+        "name": "account_type",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Type of the account (e.g., Basic Credit Card)"
+    },
+    {
+        "name": "open_date_id",
+        "type": "INTEGER",
+        "mode": "NULLABLE",
+        "description": "Foreign key referencing the date the account was opened"
+    },
+    {
+        "name": "close_date_id",
+        "type": "INTEGER",
+        "mode": "NULLABLE",
+        "description": "Foreign key referencing the date the account was closed (NULL if still open)"
+    },
+    {
+        "name": "account_status",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Current status of the account (e.g., Suspended)"
+    }
+]

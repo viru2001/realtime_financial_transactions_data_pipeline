@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "name": "dim_customer",
+  "fields": [
+    {
+      "name": "customer_id",
+      "type": "long"
+    },
+    {
+      "name": "first_name",
+      "type": "string"
+    },
+    {
+      "name": "last_name",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "phone",
+      "type": "string"
+    },
+    {
+      "name": "date_of_birth",
+      "type": "string",
+      "logicalType": "date"
+    },
+    {
+      "name": "signup_date_id",
+      "type": "int"
+    },
+    {
+      "name": "customer_status",
+      "type": "string"
+    },
+    {
+      "name": "customer_segment",
+      "type": "string"
+    },
+    {
+      "name": "address_line_1",
+      "type": "string"
+    },
+    {
+      "name": "address_line_2",
+      "type": "string"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "state",
+      "type": "string"
+    },
+    {
+      "name": "pincode",
+      "type": "string"
+    }
+  ]
+}

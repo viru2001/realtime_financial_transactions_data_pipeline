@@ -1,0 +1,59 @@
+[
+    {
+        "name": "customer_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "first_name",
+        "type": "STRING"
+    },
+    {
+        "name": "last_name",
+        "type": "STRING"
+    },
+    {
+        "name": "email",
+        "type": "STRING"
+    },
+    {
+        "name": "phone",
+        "type": "STRING"
+    },
+    {
+        "name": "date_of_birth",
+        "type": "DATE"
+    },
+    {
+        "name": "signup_date_id",
+        "type": "INTEGER"
+    },
+    {
+        "name": "customer_status",
+        "type": "STRING"
+    },
+    {
+        "name": "customer_segment",
+        "type": "STRING"
+    },
+    {
+        "name": "address_line_1",
+        "type": "STRING"
+    },
+    {
+        "name": "address_line_2",
+        "type": "STRING"
+    },
+    {
+        "name": "city",
+        "type": "STRING"
+    },
+    {
+        "name": "state",
+        "type": "STRING"
+    },
+    {
+        "name": "pincode",
+        "type": "STRING"
+    }
+]

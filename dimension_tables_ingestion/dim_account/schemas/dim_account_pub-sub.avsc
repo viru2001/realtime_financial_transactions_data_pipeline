@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "dim_account",
+  "fields": [
+    {
+      "name": "account_id",
+      "type": "long"
+    },
+    {
+      "name": "customer_id",
+      "type": "long"
+    },
+    {
+      "name": "account_type",
+      "type": "string"
+    },
+    {
+      "name": "open_date_id",
+      "type": "int"
+    },
+    {
+      "name": "close_date_id",
+      "type": ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "account_status",
+      "type": "string"
+    }
+  ]
+}
