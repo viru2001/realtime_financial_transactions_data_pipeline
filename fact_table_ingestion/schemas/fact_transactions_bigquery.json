@@ -60,7 +60,12 @@
         "mode": "REQUIRED"
     },
     {
-        "name": "card_number",
+        "name": "masked_card_number",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "card_token",
         "type": "STRING",
         "mode": "NULLABLE"
     },
