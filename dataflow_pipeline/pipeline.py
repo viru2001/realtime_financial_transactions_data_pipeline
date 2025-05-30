@@ -46,12 +46,29 @@ class TokenizeAndMaskDoFn(beam.DoFn):
 
         self.fpe = pyffx.Integer(dek, length=16)
 
+    
+
     def process(self, element_json):
         from datetime import datetime
         import apache_beam as beam
         import logging
 
+        def unwrap_primitives(record):
+            unwrapped = {}
+            for k, v in record.items():
+                # detect the { "string": "..."} / {"int": ...} pattern:
+                if isinstance(v, dict) and len(v) == 1:
+                    typ, prim = next(iter(v.items()))
+                    # you can whitelist the primitive types you care about:
+                    if typ in ("string", "int", "float"):
+                        unwrapped[k] = prim
+                        continue
+                # otherwise, leave as‐is
+                unwrapped[k] = v
+            return unwrapped
+
         record = json.loads(element_json)
+        record = unwrap_primitives(record)
         logging.info(record)
         pan = record.get('card_number')
         if not pan or len(pan) < 13 or len(pan) > 19:
