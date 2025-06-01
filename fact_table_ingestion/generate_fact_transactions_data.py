@@ -144,11 +144,13 @@ def generate_transactions( num_records: int = None):
 
         txn_dt = random_transaction_timestamp(open_d, close_d)
 
-         # If channel is POS or Online Payment Gateway, add card details
+        cardholder_name=""
+        card_expiry_date=""
+        # If channel is POS or Online Payment Gateway, add card details
         if channel in ("POS", "Online Payment Gateway"):
-            card_number = fake.credit_card_number()
+            card_provider, cardholder_name, num_exp, *_ = fake.credit_card_full().split('\n')
+            card_number, card_expiry_date = num_exp.split()
             card_bin = card_number[:6]
-            card_provider= fake.credit_card_provider()
         else :
             card_number = None
             card_bin = None
@@ -213,6 +215,8 @@ def generate_transactions( num_records: int = None):
             'card_number' :{"string": card_number} if card_number else None ,
             "card_bin" :{"string": card_bin} if card_bin else None,
             "card_provider":{"string":  card_provider} if card_provider else None,
+            "cardholder_name" : cardholder_name,
+            "card_expiry_date": card_expiry_date,
             "payment_gateway_id" :{"int": payment_gateway_id} if payment_gateway_id else None,
             "device_type_id" : device_type_id,
             "ip_address": ip_address,
@@ -224,7 +228,7 @@ def generate_transactions( num_records: int = None):
         future = publisher.publish(topic_path, data=data_bytes)
         print(f"Published TXN {txn_id} (cust {cust_id}, acct {acct_id}) -> {future.result()}")
         count  += 1
-        time.sleep(0.1)
+        time.sleep(30)
 
 # ─── ENTRY POINT────────────────────────────────────────────────────────────────
 if __name__ == "__main__":

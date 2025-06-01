@@ -80,6 +80,16 @@
         "mode": "NULLABLE"
     },
     {
+        "name": "cardholder_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "card_expiry_date",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
         "name": "payment_gateway_id",
         "type": "INT64",
         "mode": "NULLABLE"

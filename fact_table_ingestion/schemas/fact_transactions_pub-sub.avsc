@@ -66,6 +66,16 @@
       "default": null
     },
     {
+      "name": "cardholder_name",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "card_expiry_date",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
       "name": "payment_gateway_id",
       "type": ["null", "int"],
       "default": null
