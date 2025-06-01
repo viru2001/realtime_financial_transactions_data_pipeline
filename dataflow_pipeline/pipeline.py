@@ -3,6 +3,7 @@ import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions, StandardOptions
 from apache_beam.io.gcp.pubsub import ReadFromPubSub
 from apache_beam.io.gcp.bigquery import WriteToBigQuery, BigQueryDisposition
+from apache_beam.io.filesystems import FileSystems
 
 class TokenizeAndMaskDoFn(beam.DoFn):
     def __init__(self, project_id, location_id, key_ring_id, crypto_key_id, dek_gcs_path):
@@ -71,7 +72,7 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         record = unwrap_primitives(record)
         logging.info(record)
         pan = record.get('card_number')
-        if not pan or len(pan) < 13 or len(pan) > 19:
+        if len(pan) < 13 or len(pan) > 19:
             # raise ValueError(f"Invalid PAN: {pan}")
              # Write invalid records to the error table
             error_record = {
@@ -111,6 +112,8 @@ class TokenizeAndMaskDoFn(beam.DoFn):
             "card_token": record.get("card_token"),
             "card_bin": record.get("card_bin"),
             "card_provider": record.get("card_provider"),
+            "cardholder_name" : record.get("cardholder_name"),
+            "card_expiry_date": record.get("card_expiry_date"),
             "payment_gateway_id": record.get("payment_gateway_id"),
             "device_type_id": record.get("device_type_id"),
             "ip_address": record.get("ip_address"),
@@ -119,12 +122,24 @@ class TokenizeAndMaskDoFn(beam.DoFn):
 
         yield output_record
 
+
+# Function to load a JSON schema from GCS.
+def load_schema_from_gcs(gcs_path):
+    with FileSystems.open(gcs_path) as f:
+        schema = json.load(f)
+    # If the schema is a list, wrap it in {"fields": ...}
+        if isinstance(schema, list):
+            schema = {"fields": schema}
+        return schema
+
 def run():
     pub_sub_subscription = "projects/financial-transactions-data/subscriptions/fact_transactions_sub"
     project_id = "financial-transactions-data"
     dataset_name = "transactions_data"
     table_name = "fact_transactions"
-
+    fact_table_schema_uri = "gs://transactions_data_dataflow_pipeline/schemas/fact_transactions_bigquery.json"
+    
+    fact_table_schema = load_schema_from_gcs(fact_table_schema_uri)
     # Define KMS and DEK parameters
     location_id = "global"  
     key_ring_id = "card-tokenization-ring"
@@ -156,30 +171,7 @@ def run():
         # Write valid records to the main BigQuery table
         results.valid_records |  'WriteToBQ' >> WriteToBigQuery(
                 table=f'{project_id}:{dataset_name}.{table_name}',
-                schema={
-                    "fields": [
-                        {"name": "transaction_id", "type": "STRING"},
-                        {"name": "customer_id", "type": "INTEGER"},
-                        {"name": "account_id", "type": "INTEGER"},
-                        {"name": "merchant_id", "type": "INTEGER"},
-                        {"name": "merchant_category_code_id", "type": "INTEGER"},
-                        {"name": "is_recurring", "type": "BOOLEAN"},
-                        {"name": "transaction_datetime", "type": "STRING"},
-                        {"name": "amount", "type": "FLOAT"},
-                        {"name": "tax_amount", "type": "FLOAT"},
-                        {"name": "discount_amount", "type": "FLOAT"},
-                        {"name": "total_amount", "type": "FLOAT"},
-                        {"name": "transaction_channel", "type": "STRING"},
-                        {"name": "masked_card_number", "type": "STRING"},
-                        {"name":"card_token", "type": "STRING"},
-                        {"name": "card_bin", "type": "STRING"},
-                        {"name": "card_provider", "type": "STRING"},
-                        {"name": "payment_gateway_id", "type": "INTEGER"},
-                        {"name": "device_type_id", "type": "INTEGER"},
-                        {"name": "ip_address", "type": "STRING"},
-                        {"name": "risk_score", "type": "FLOAT"}
-                    ]
-                },
+                schema=fact_table_schema,
                 write_disposition=BigQueryDisposition.WRITE_APPEND,
                 create_disposition=BigQueryDisposition.CREATE_NEVER,
             )
