@@ -72,28 +72,33 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         record = unwrap_primitives(record)
         logging.info(record)
         pan = record.get('card_number')
-        if len(pan) < 13 or len(pan) > 19:
+
+        if pan:
+            if len(pan) < 13 or len(pan) > 19:
             # raise ValueError(f"Invalid PAN: {pan}")
              # Write invalid records to the error table
-            error_record = {
-                'transaction_id': record.get('transaction_id'),
-                'timestamp': datetime.now().isoformat(),
-                'raw_message': element_json,
-                'error': f"Invalid Card Number",
-            }
-            yield beam.pvalue.TaggedOutput('errors', error_record)
-            return
+                error_record = {
+                    'transaction_id': record.get('transaction_id'),
+                    'timestamp': datetime.now().isoformat(),
+                    'raw_message': element_json,
+                    'error': f"Invalid Card Number",
+                }
+                yield beam.pvalue.TaggedOutput('errors', error_record)
+                return
+            # Mask: first 6 & last 4
+            masked = pan[:6] + '*' * 6 + pan[-4:]
 
-        # Mask: first 6 & last 4
-        masked = pan[:6] + '*' * 6 + pan[-4:]
+            # Tokenize: FPE encrypt
+            token = str(self.fpe.encrypt(int(pan))).zfill(16)
 
-        # Tokenize: FPE encrypt
-        token = str(self.fpe.encrypt(int(pan))).zfill(16)
-
-        # Update record
-        record['masked_card_number'] = masked
-        record['card_token'] = token
-        record.pop('card_number', None)
+            # Update record
+            record['masked_card_number'] = masked
+            record['card_token'] = token
+            record.pop('card_number', None)
+        else:
+            record['masked_card_number'] = None
+            record['card_token'] = None
+            record.pop('card_number', None)
 
         output_record = {
             "transaction_id": record.get("transaction_id"),
