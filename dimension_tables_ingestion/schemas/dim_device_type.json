@@ -1,0 +1,12 @@
+[
+    {
+        "name": "device_type_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "device_type_name",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    }
+]

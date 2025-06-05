@@ -1,0 +1,20 @@
+merchant_category_id,mcc_description,is_recurring
+1,Online Retail,False
+2,Grocery Stores,False
+3,Electronics Stores,False
+4,Food Delivery,False
+5,Railways,False
+6,Travel Agencies,False
+7,Payment Processing Services,False
+8,Streaming Services,True
+9,Fast Food Restaurants,False
+10,Ride-Hailing Services,False
+11,"Ticket Sales - Entertainment,false",
+12,Movie Theaters,False
+13,Department Stores,False
+14,Coffee Shops,False
+15,Pharmacies,False
+16,Airlines,False
+17,Hotels and Accommodation,False
+18,Music Streaming Services,True
+19,Subscription Services - Membership,True

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "merchant_category_id",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "mcc_description",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_recurring",
+    "type": "BOOLEAN",
+    "mode": "NULLABLE"
+  }
+]

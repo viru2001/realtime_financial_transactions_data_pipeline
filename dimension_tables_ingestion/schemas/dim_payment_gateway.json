@@ -1,0 +1,12 @@
+[
+  {
+    "name": "payment_gateway_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "payment_gateway_name",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  }
+]
