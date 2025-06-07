@@ -13,10 +13,9 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         self.crypto_key_id = crypto_key_id
         self.dek_gcs_path = dek_gcs_path
         self.kms_client = None
-        self.fpe = None
+        # self.fpe = None
 
     def setup(self):
-        import pyffx
         from google.cloud import kms,storage
 
         # Initialize KMS client
@@ -43,9 +42,9 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         response = self.kms_client.decrypt(
             request={'name': key_name, 'ciphertext': encrypted_dek}
         )
-        dek = response.plaintext  # plaintext DEK
+        self.dek = response.plaintext  # plaintext DEK
 
-        self.fpe = pyffx.Integer(dek, length=16)
+        # self.fpe = pyffx.Integer(dek, length=16)
 
     
 
@@ -53,6 +52,7 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         from datetime import datetime
         import apache_beam as beam
         import logging
+        import pyffx
 
         def unwrap_primitives(record):
             unwrapped = {}
@@ -74,6 +74,7 @@ class TokenizeAndMaskDoFn(beam.DoFn):
         pan = record.get('card_number')
 
         if pan:
+            pan_length = len(pan)
             if len(pan) < 13 or len(pan) > 19:
             # raise ValueError(f"Invalid PAN: {pan}")
              # Write invalid records to the error table
@@ -88,8 +89,10 @@ class TokenizeAndMaskDoFn(beam.DoFn):
             # Mask: first 6 & last 4
             masked = pan[:6] + '*' * 6 + pan[-4:]
 
+            # Tokenize: FPE encrypt with correct length
+            fpe = pyffx.Integer(self.dek, length=pan_length)
             # Tokenize: FPE encrypt
-            token = str(self.fpe.encrypt(int(pan))).zfill(16)
+            token = str(fpe.encrypt(int(pan))).zfill(16)
 
             # Update record
             record['masked_card_number'] = masked
