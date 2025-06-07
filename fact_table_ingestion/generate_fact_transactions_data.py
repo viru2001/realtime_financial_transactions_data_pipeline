@@ -14,7 +14,7 @@ DIM_ACCOUNT_TABLE     = "dim_account"
 TRANSACTIONS_TOPIC_ID = "fact_transactions"
 
 # ─── REFRESH SETTINGS────────────────────────────────────────────────────────────
-REFRESH_INTERVAL_SECONDS = 300  # e.g., every 5 minutes
+REFRESH_INTERVAL_SECONDS = 60  # e.g., every 5 minutes
 
 # ─── LOOKUP CSV FILE─────────────────────────────────────────────────────────────
 MERCHANTS_CSV = "data/merchants.csv"
@@ -228,7 +228,7 @@ def generate_transactions( num_records: int = None):
         future = publisher.publish(topic_path, data=data_bytes)
         print(f"Published TXN {txn_id} (cust {cust_id}, acct {acct_id}) -> {future.result()}")
         count  += 1
-        time.sleep(30)
+        time.sleep(0.001)
 
 # ─── ENTRY POINT────────────────────────────────────────────────────────────────
 if __name__ == "__main__":

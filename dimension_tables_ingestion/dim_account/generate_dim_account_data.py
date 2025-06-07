@@ -50,13 +50,13 @@ SEGMENT_ACCOUNT_TYPES = {
 segment_distribution = {
     'Retail Banking': 45,
     'Mass Affluent': 15,
-    'High Net Worth Individuals (HNWIs)': 5,
+    'High Net Worth Individuals (HNWIs)': 2,
     'SMEs': 5,
     'Corporate Clients': 8,
     'NRIs': 5,
     'Agriculture and Rural Banking': 5,
     'Government and Institutional Banking': 4,
-    'Young Professionals': 5,
+    'Young Professionals': 8,
     'Retirees': 3
 }
 segments = list(segment_distribution.keys())
@@ -189,12 +189,12 @@ def generate_account_records(last_id, num_records=None):
 
         account_id += 1
         count += 1
-        time.sleep(0.5)
+        time.sleep(0.15)
 
 
 def main():
     # Fetch starting account_id from metadata or BigQuery
-    last_account_id = 500000000
+    last_account_id = 500025171
     generate_account_records(last_account_id)
 
 

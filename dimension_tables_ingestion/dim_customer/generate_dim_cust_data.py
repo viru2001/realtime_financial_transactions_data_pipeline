@@ -34,13 +34,13 @@ statuses_weights = list(status_distribution.values())
 segment_distribution = {
     'Retail Banking': 45,
     'Mass Affluent': 15,
-    'High Net Worth Individuals (HNWIs)': 5,
+    'High Net Worth Individuals (HNWIs)': 2,
     'SMEs': 5,
     'Corporate Clients': 8,
     'NRIs': 5,
     'Agriculture and Rural Banking': 5,
     'Government and Institutional Banking': 4,
-    'Young Professionals': 5,
+    'Young Professionals': 8,
     'Retirees': 3
 }
 
@@ -123,10 +123,10 @@ def generate_customer_data(last_id,number_of_records):
 
          # Increament customer_id
         customer_id = customer_id + 1
-        time.sleep(0.5)
+        time.sleep(0.2)
 
 if __name__ == "__main__":
-    last_id=1968000000
-    number_of_records = 500
+    last_id=1968022735
+    number_of_records = 30000
     data = generate_customer_data(last_id,number_of_records)
 
