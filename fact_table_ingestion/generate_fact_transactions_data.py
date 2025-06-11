@@ -228,7 +228,7 @@ def generate_transactions( num_records: int = None):
         future = publisher.publish(topic_path, data=data_bytes)
         print(f"Published TXN {txn_id} (cust {cust_id}, acct {acct_id}) -> {future.result()}")
         count  += 1
-        time.sleep(0.001)
+        time.sleep(0.0001)
 
 # ─── ENTRY POINT────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
